@@ -1,0 +1,10 @@
+.profile {
+  grid-area: contents;
+  background-color: rgba(50, 32, 133, 0.438);
+  border-radius: 10px;
+  display: grid;
+}
+
+.profile img {
+  margin: 0 auto;
+}

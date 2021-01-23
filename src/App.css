@@ -1,0 +1,17 @@
+.app_wrap {
+  margin: 0 auto;
+  width: 1200px;
+  height: 50px;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "navbar contents";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+ 
+}
+
+body {
+  background-color: rgba(201, 109, 209, 0.486);
+}

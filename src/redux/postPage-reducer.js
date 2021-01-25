@@ -1,7 +1,20 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-const postPageReducer = (state, action) => {
+let initialState = {
+  postData: [
+    {
+      id: 1,
+      message: "Hello, this my first post in the social network ",
+      likesCount: "99",
+    },
+    { id: 2, message: "222 ", likesCount: "1" },
+    { id: 3, message: "mb ya sportboy ", likesCount: "98" },
+  ],
+  newPost: "",
+}
+
+const postPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
       let newPost = {

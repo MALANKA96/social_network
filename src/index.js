@@ -3,22 +3,24 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-
 import store from "./redux/redux-store";
+import { Provider } from "react-redux";
 
-let rerender = (state) => {
+let rerender = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} dispatch={store.dispatch.bind(store)} />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );
 };
 
-rerender(store.getState());
+rerender();
+
 store.subscribe(() => {
-  let state = store.getState();
-  rerender(state);
+  rerender();
 });
 
 reportWebVitals();

@@ -12,22 +12,24 @@ let initialState = {
     { id: 3, message: "mb ya sportboy ", likesCount: "98" },
   ],
   newPost: "",
-}
+};
 
 const postPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
-      let newPost = {
-        id: 5,
-        message: state.newPost,
-        likesCount: 0,
+      return {
+        ...state,
+        postData: [...state.postData, {id: 5, message: state.newPost, likesCount: 0, }],
+        newPost: "",
       };
-      state.postData.push(newPost);
-      state.newPost = "";
-      return state;
+
     case UPDATE_NEW_POST_TEXT:
-      state.newPost = action.newText;
-      return state;
+      return {
+        ...state,
+        newPost: [...state.newPost],
+        newPost: action.newText,
+      };
+
     default:
       return state;
   }

@@ -13,11 +13,11 @@ function App(props) {
       <div className="app_wrap">
         <Header />
         <NavBar />
-        <Route path="/profile" render={() => <Profile store={props.store} />} />
+        <Route path="/profile" render={() => <Profile />} />
 
         <Route
           path="/messages"
-          render={() => <MessagesContainer store={props.store} />}
+          render={() => <MessagesContainer />}
         />
         <Route path="/news" render={() => <News />} />
       </div>

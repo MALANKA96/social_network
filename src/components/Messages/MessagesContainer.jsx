@@ -4,9 +4,9 @@ import {
   addMessageCreator,
   updateNewMessageCreator,
 } from "./../../redux/dialogPage-reducer";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
- /* const MessagesContainer = (props) => {
+/* const MessagesContainer = (props) => {
   let state = props.store.getState();
 
   let sendMessageAdd = () => {
@@ -32,25 +32,22 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
   return {
     dialogData: state.dialogPage.dialogData,
-      textData: state.dialogPage.textData,
-      newMessage: state.dialogPage.newMessage,
+    textData: state.dialogPage.textData,
+    newMessage: state.dialogPage.newMessage,
   };
 };
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewMessage: () => {
-      dispatch(addMessageCreator());
+    updateNewMessage: (text) => {
+      dispatch(updateNewMessageCreator(text) );
     },
-    sendMessageAdd: (text) => {
-      dispatch(updateNewMessageCreator(text));
+    sendMessageAdd: () => {
+      dispatch(addMessageCreator());
     },
   };
 };
 
-const MessagesContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Messages);
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
 
 export default MessagesContainer;

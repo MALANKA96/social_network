@@ -31,7 +31,10 @@ const Messages = (props) => {
             onChange={onChangeMessage}
             value={props.newMessage}
             placeholder="Чирикни письмо"
-          ></textarea>
+          >
+          {" "}
+
+          </textarea>
           <div>
             <button onClick={onSendMessageAdd}> submit </button>
           </div>

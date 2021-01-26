@@ -4,7 +4,7 @@ import {
   updateNewPostTextCreator,
 } from "./../../../redux/postPage-reducer";
 import MyPosts from "./MyPosts";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 /* const MyPostsContainer = (props) => {
   let state = props.store.getState();
@@ -31,20 +31,19 @@ let mapStateToProps = (state) => {
   return {
     postData: state.postPage.postData,
     newPost: state.postPage.newPost,
-  }
+  };
 };
 
 let mapDispatchToProps = (dispatch) => {
-return {
-  updateNewPostText: (text) => {
-    dispatch(updateNewPostTextCreator(text));
-  },
-  addPost: () => {
-    dispatch(addPostCreator());
-  }
-}
+  return {
+    updateNewPostText: (text) => {
+      dispatch(updateNewPostTextCreator(text));
+    },
+    addPost: () => {
+      dispatch(addPostCreator());
+    },
+  };
 };
-
 
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 

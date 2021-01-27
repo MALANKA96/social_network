@@ -6,6 +6,8 @@ import NavBar from "./components/Navbar/NavBar";
 import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import MessagesContainer from "./components/Messages/MessagesContainer";
+import UsersContainer from './Users/UsersContainer';
+
 
 function App(props) {
   return (
@@ -14,12 +16,9 @@ function App(props) {
         <Header />
         <NavBar />
         <Route path="/profile" render={() => <Profile />} />
-
-        <Route
-          path="/messages"
-          render={() => <MessagesContainer />}
-        />
+        <Route path="/messages" render={() => <MessagesContainer />} />
         <Route path="/news" render={() => <News />} />
+        <Route path="/users" render={() => <UsersContainer />} />
       </div>
     </BrowserRouter>
   );

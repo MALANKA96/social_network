@@ -13,10 +13,10 @@ const NavBar = () => {
                 <NavLink to='/messages' activeClassName={style.activeLine}> Messages</NavLink>
             </div>
             <div className={style.item}>
-                <NavLink to='/news' activeClassName={style.activeLine} > News</NavLink>
+                <NavLink to='/users' activeClassName={style.activeLine} > Users</NavLink>
             </div>
             <div className={style.item}>
-                <NavLink to='/water' activeClassName={style.activeLine}> Water</NavLink>
+                <NavLink to='/news' activeClassName={style.activeLine}> News</NavLink>
             </div>
             <div className={style.item}>
                 <NavLink to='/friends' activeClassName={style.activeLine}> Friends</NavLink>

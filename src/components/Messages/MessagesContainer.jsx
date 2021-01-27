@@ -3,7 +3,7 @@ import Messages from "./Messages";
 import {
   addMessageCreator,
   updateNewMessageCreator,
-} from "./../../redux/dialogPage-reducer";
+} from "../../redux/messages-reducer";
 import { connect } from "react-redux";
 
 /* const MessagesContainer = (props) => {

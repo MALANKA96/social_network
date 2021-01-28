@@ -9,7 +9,7 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from './Users/UsersContainer';
 
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <div className="app_wrap">

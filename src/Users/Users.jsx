@@ -2,9 +2,9 @@ import { React } from "react";
 import style from "./Users.module.css";
 
 let Users = (props) => {
-  if (props.users.length === 0) {
-    props.setUsers([
-      {
+   if (props.users.length === 0) { 
+    props.setUsers( [
+        {
         id: 1,
         avaUrl: "https://klike.net/uploads/posts/2019-03/1551511784_4.jpg",
         followed: true,
@@ -38,36 +38,22 @@ let Users = (props) => {
         fullName: "Pasha",
         status: "im 23",
         location: { sity: "Kiev", country: "Ukreine" },
-      },
-    ]);
-  }
+      } 
+    ])
+   }
 
-  return (
-    <div>
-      {props.users.map((u) => (
+  return <div>
+      {
+      props.users.map(u => (
         <div key={u.id}>
           <span>
             <div>
               <img src={u.avaUrl} alt="a" className={style.avaUrl} />
             </div>
-            <div>
-              {u.followed ? (
-                <button
-                  onClick={() => {
-                    props.unfollow(u.id);
-                  }}
-                >
-                  unfollow
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    props.follow(u.id);
-                  }}
-                >
-                  follow
-                </button>
-              )}
+            <div> 
+              {u.followed 
+            ? ( <button onClick={() => { props.unfollow(u.id) }}> unfollow </button>) 
+            : ( <button onClick={() => { props.follow(u.id) }} > follow </button> )}
             </div>
           </span>
           <span>
@@ -81,9 +67,10 @@ let Users = (props) => {
             </span>
           </span>
         </div>
-      ))}
+      ))
+      }
     </div>
-  );
+  
 };
 
 export default Users;

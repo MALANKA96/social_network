@@ -3,8 +3,8 @@
   grid-area: header;
   background-color: rgba(50, 32, 133, 0.438);
   display: grid;
-   grid-template-columns: 50px 1000px;
-   border-radius: 10px;
+  grid-template-columns: 50px 1000px 100px;
+  border-radius: 10px;
 }
 
 .header .headerText {
@@ -17,4 +17,31 @@
 
 .header img {
   width: 50px;
+}
+
+.loginBlock {
+  font: sans-serif;
+  text-align: center;
+  font-size: 20px;
+  color: cornsilk;
+}
+
+.loginBlock a {
+  font: sans-serif;
+  text-align: center;
+  font-size: 20px;
+  color: cornsilk;
+}
+.loginBlock a.activeLine {
+  color:red;
+  font-size: 25px;
+  
+}
+.loginBlock :active {
+  color: rgb(16, 18, 167);
+}
+
+.loginBlock :hover {
+  font-size: 30px;
+  color: darkgreen;
 }

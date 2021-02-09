@@ -1,6 +1,6 @@
-import postPageReducer from "./postPage-reducer";
-import dialogPageReducer from "./dialogPage-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import postPageReducer from './postPage-reducer';
+import dialogPageReducer from './dialogPage-reducer';
+import sidebarReducer from './sidebar-reducer';
 
 let store = {
   _state: {
@@ -8,38 +8,38 @@ let store = {
       postData: [
         {
           id: 1,
-          message: "Hello, this my first post in the social network ",
-          likesCount: "99",
+          message: 'Hello, this my first post in the social network ',
+          likesCount: '99',
         },
-        { id: 2, message: "222 ", likesCount: "1" },
-        { id: 3, message: "mb ya sportboy ", likesCount: "98" },
+        { id: 2, message: '222 ', likesCount: '1' },
+        { id: 3, message: 'mb ya sportboy ', likesCount: '98' },
       ],
-      newPost: "",
+      newPost: '',
     },
     dialogPage: {
       dialogData: [
-        { id: 1, name: "Anton" },
-        { id: 2, name: "Pasha" },
-        { id: 3, name: "Nadya" },
-        { id: 4, name: "Vlad" },
-        { id: 5, name: "Julia" },
-        { id: 6, name: "Jeka" },
+        { id: 1, name: 'Anton' },
+        { id: 2, name: 'Pasha' },
+        { id: 3, name: 'Nadya' },
+        { id: 4, name: 'Vlad' },
+        { id: 5, name: 'Julia' },
+        { id: 6, name: 'Jeka' },
       ],
 
       textData: [
-        { id: 1, text: "Hi" },
-        { id: 1, text: "Hello react" },
-        { id: 1, text: "ya tebya viuchu" },
-        { id: 1, text: "100pro" },
+        { id: 1, text: 'Hi' },
+        { id: 1, text: 'Hello react' },
+        { id: 1, text: 'ya tebya viuchu' },
+        { id: 1, text: '100pro' },
       ],
 
-      newMessage: "",
+      newMessage: '',
     },
     sidebar: {},
   },
 
   _rerender() {
-    console.log("z");
+    console.log('z');
   },
 
   getState() {

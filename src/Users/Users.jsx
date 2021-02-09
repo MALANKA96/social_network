@@ -1,69 +1,86 @@
 import * as React from "react";
 import style from "./Users.module.css";
-import * as axios from "axios";
 import userPhoto from "../assets/image/user.png";
+import { NavLink } from "react-router-dom";
+import { followAPI } from "../api/api";
 
-class Users extends React.Component {
-  constructor(props) {
-    super(props);
+let Users = (props) => {
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
-  componentDidMount() {
-    axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-      });
-  }
-  render() {
-    return (
+
+  return (
+    <div>
       <div>
-        {this.props.users.map((u) => (
-          <div key={u.id}>
-            <span>
-              <div>
+        {pages.map((p) => {
+          return (
+            <span
+              className={props.currentPage === p && style.currentPage}
+              onClick={(e) => {
+                props.onPageChanged(p);
+              }}
+            >
+              {p}
+            </span>
+          );
+        })}
+      </div>
+      {props.users.map((u) => (
+        <div key={u.id}>
+          <span>
+            <div>
+              <NavLink to={`/profile/` + u.id}>
                 <img
                   src={u.photos.small != null ? u.photos.small : userPhoto}
                   alt="a"
                   className={style.avaUrl}
                 />
-              </div>
-              <div>
-                {u.followed ? (
-                  <button
-                    onClick={() => {
-                      this.props.unfollow(u.id);
-                    }}
-                  >
-                    {" "}
-                    unfollow{" "}
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      this.props.follow(u.id);
-                    }}
-                  >
-                    {" "}
-                    follow{" "}
-                  </button>
-                )}
-              </div>
+              </NavLink>
+            </div>
+            <div>
+              {u.followed ? (
+                <button
+                  onClick={() => {
+                    followAPI.deleteUsers(u.id).then((data) => {
+                      if (data.resultCode == 0) {
+                        props.unfollow(u.id);
+                      }
+                    });
+                  }}
+                >
+                  unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    followAPI.postUsers(u.id).then((data) => {
+                      if (data.resultCode == 0) {
+                        props.follow(u.id);
+                      }
+                    });
+                  }}
+                >
+                  follow
+                </button>
+              )}
+            </div>
+          </span>
+          <span>
+            <span>
+              <div>{u.name}</div>
+              <div>{u.status}</div>
             </span>
             <span>
-              <span>
-                <div>{u.name}</div>
-                <div>{u.status}</div>
-              </span>
-              <span>
-                <div>{"u.location.country"}</div>
-                <div>{"u.location.sity"}</div>
-              </span>
+              <div>{"u.location.country"}</div>
+              <div>{"u.location.sity"}</div>
             </span>
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default Users;

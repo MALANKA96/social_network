@@ -17,7 +17,7 @@ let initialState = {
   ],
   newPost: "",
   profile: null,
-  status: "",
+  status: " ",
 };
 
 const postPageReducer = (state = initialState, action) => {
@@ -67,33 +67,33 @@ export const setUsersProfile = (profile) => {
     profile,
   };
 };
-export const setUsersStatus = (status) => {
+export const setStatus = (status) => {
   return {
     type: SET_STATUS,
     status,
   };
 };
 
-export const getProfile = (userId) => {
+export const getUserProfile = (userId) => {
   return (dispatch) => {
-    profileAPI.getProfile(userId).then((data) => {
+    profileAPI.getUserProfile(userId).then((data) => {
       dispatch(setUsersProfile(data));
     });
   };
 };
 
-export const getProfileStatus = (userId) => {
+export const getUserStatus = (userId) => {
   return (dispatch) => {
-    profileAPI.getProfileStatus(userId).then((data) => {
-      dispatch(setUsersStatus(data));
+    profileAPI.getUserStatus(userId).then((data) => {
+      dispatch(setStatus(data));
     });
   };
 };
 export const updateProfileStatus = (status) => {
   return (dispatch) => {
     profileAPI.updateProfileStatus(status).then((data) => {
-      if (data.data.resultCode === 0) {
-        dispatch(setUsersStatus(data));
+      if (data.resultCode === 0) {
+        dispatch(setStatus(status));
       }
     });
   };

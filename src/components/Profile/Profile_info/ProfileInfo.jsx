@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
      
       <div>
         <img src={props.profile.photos.large} alt="s" width='200px' height='200px' />
-        <ProfileStatus status={"First status in this SN"} />
+        <ProfileStatus status={props.status} updateProfileStatus={props.updateProfileStatus}/>
         <div>{props.profile.aboutMe}</div>
         <div>{props.profile.contacts.facebook}</div>
         <img src={ props.profile.lookingForAJob  ? 'https://w7.pngwing.com/pngs/964/995/png-transparent-smiley-emoticon-thumb-signal-emoji-dank-face-smiley-thumb-signal.png' : null}  alt="s" width='200px' height='200px' />

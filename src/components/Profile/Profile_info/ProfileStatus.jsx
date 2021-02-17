@@ -5,6 +5,7 @@ import style from "./ProfileInfo.module.css";
 class ProfileStatus extends React.Component {
   state = {
     active: false,
+    status: this.props.status,
   };
 
   activeStatus = () => {
@@ -13,16 +14,28 @@ class ProfileStatus extends React.Component {
 
   deactiveStatus = () => {
     this.setState({ active: false });
+    this.props.updateProfileStatus(this.state.status);
   };
+
+  onStatusChange = (e) => {
+    this.setState({ status: e.currentTarget.value });
+    
+  };
+
   render() {
     return (
       <div>
         {!this.state.active && (
-          <div onDoubleClick={this.activeStatus}>{this.props.status}</div>
+          <div onDoubleClick={this.activeStatus}>{this.props.status || "status none"}</div>
         )}
         {this.state.active && (
           <div onBlur={this.deactiveStatus}>
-            <input type="text" autoFocus={true} value={this.props.status} />
+            <input
+              onChange={this.onStatusChange}
+              type="text"
+              autoFocus={true}
+              value={this.state.status}
+            />
           </div>
         )}
       </div>

@@ -1,8 +1,9 @@
-import { usersAPI } from "../api/api";
+import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USERS_PROFILE = "SET_USERS_PROFILE";
+const SET_STATUS = "SET_STATUS";
 
 let initialState = {
   postData: [
@@ -16,6 +17,7 @@ let initialState = {
   ],
   newPost: "",
   profile: null,
+  status: "",
 };
 
 const postPageReducer = (state = initialState, action) => {
@@ -41,6 +43,11 @@ const postPageReducer = (state = initialState, action) => {
         ...state,
         profile: action.profile,
       };
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.status,
+      };
 
     default:
       return state;
@@ -60,11 +67,34 @@ export const setUsersProfile = (profile) => {
     profile,
   };
 };
+export const setUsersStatus = (status) => {
+  return {
+    type: SET_STATUS,
+    status,
+  };
+};
 
 export const getProfile = (userId) => {
   return (dispatch) => {
-    usersAPI.getProfile(userId).then((data) => {
+    profileAPI.getProfile(userId).then((data) => {
       dispatch(setUsersProfile(data));
+    });
+  };
+};
+
+export const getProfileStatus = (userId) => {
+  return (dispatch) => {
+    profileAPI.getProfileStatus(userId).then((data) => {
+      dispatch(setUsersStatus(data));
+    });
+  };
+};
+export const updateProfileStatus = (status) => {
+  return (dispatch) => {
+    profileAPI.updateProfileStatus(status).then((data) => {
+      if (data.data.resultCode === 0) {
+        dispatch(setUsersStatus(data));
+      }
     });
   };
 };

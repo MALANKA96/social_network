@@ -16,17 +16,11 @@ export const usersAPI = {
         return response.data;
       });
   },
-};
-
-export const profileAPI = {
   getProfile(userId) {
     return instance.get(`profile/${userId}`).then((response) => {
       return response.data;
     });
   },
-};
-
-export const followAPI = {
   postUsers(id) {
     return instance.post(`follow/${id}`).then((response) => {
       return response.data;
@@ -39,3 +33,12 @@ export const followAPI = {
   },
 };
 
+export const authAPI = {
+  me() {
+    return instance
+      .get(`/auth/me`)
+      .then((response) => {
+        return response.data;
+      });
+  },
+};

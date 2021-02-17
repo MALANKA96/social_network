@@ -1,18 +1,20 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const SET_USERS_PROFILE = 'SET_USERS_PROFILE'
+import { usersAPI } from "../api/api";
+
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USERS_PROFILE = "SET_USERS_PROFILE";
 
 let initialState = {
   postData: [
     {
       id: 1,
-      message: 'Hello, this my first post in the social network ',
-      likesCount: '99',
+      message: "Hello, this my first post in the social network ",
+      likesCount: "99",
     },
-    { id: 2, message: '222 ', likesCount: '1' },
-    { id: 3, message: 'mb ya sportboy ', likesCount: '98' },
+    { id: 2, message: "222 ", likesCount: "1" },
+    { id: 3, message: "mb ya sportboy ", likesCount: "98" },
   ],
-  newPost: '',
+  newPost: "",
   profile: null,
 };
 
@@ -21,8 +23,11 @@ const postPageReducer = (state = initialState, action) => {
     case ADD_POST:
       return {
         ...state,
-        postData: [...state.postData, {id: 5, message: state.newPost, likesCount: 0, }],
-        newPost: '',
+        postData: [
+          ...state.postData,
+          { id: 5, message: state.newPost, likesCount: 0 },
+        ],
+        newPost: "",
       };
 
     case UPDATE_NEW_POST_TEXT:
@@ -31,7 +36,7 @@ const postPageReducer = (state = initialState, action) => {
         newPost: [...state.newPost],
         newPost: action.newText,
       };
-      case SET_USERS_PROFILE:
+    case SET_USERS_PROFILE:
       return {
         ...state,
         profile: action.profile,
@@ -53,6 +58,14 @@ export const setUsersProfile = (profile) => {
   return {
     type: SET_USERS_PROFILE,
     profile,
+  };
+};
+
+export const getProfile = (userId) => {
+  return (dispatch) => {
+    usersAPI.getProfile(userId).then((data) => {
+      dispatch(setUsersProfile(data));
+    });
   };
 };
 

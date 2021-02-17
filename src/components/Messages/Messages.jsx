@@ -21,6 +21,8 @@ const Messages = (props) => {
     props.updateNewMessage(text);
   };
 
+
+
   return (
     <div className={style.dialogs}>
       <div className={style.dialogsItem}>{dialogEl}</div>
@@ -32,8 +34,7 @@ const Messages = (props) => {
             value={props.newMessage}
             placeholder="Чирикни письмо"
           >
-          {" "}
-
+            {" "}
           </textarea>
           <div>
             <button onClick={onSendMessageAdd}> submit </button>

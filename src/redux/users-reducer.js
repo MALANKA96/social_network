@@ -16,6 +16,7 @@ let initialState = {
   followingInProgress: [],
 };
 
+
 const usersPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:

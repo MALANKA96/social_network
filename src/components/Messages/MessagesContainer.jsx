@@ -1,35 +1,9 @@
 import React from "react";
 import Messages from "./Messages";
-import {
-  addMessageCreator,
-  updateNewMessageCreator,
-} from "../../redux/messages-reducer";
+import { addMessageCreator } from "../../redux/messages-reducer";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "./../../hoc/WithRedirect";
 import { compose } from "redux";
-
-/* const MessagesContainer = (props) => {
-  let state = props.store.getState();
-
-  let sendMessageAdd = () => {
-    props.store.dispatch(addMessageCreator());
-  };
-
-  let onChangeMessage = (text) => {
-    let action = updateNewMessageCreator(text);
-    props.store.dispatch(action);
-  };
-
-  return (
-    <Messages
-      sendMessageAdd={sendMessageAdd}
-      updateNewMessage={onChangeMessage}
-      dialogData={state.dialogPage.dialogData}
-      textData={state.dialogPage.textData}
-      newMessage={state.dialogPage.newMessage}
-    />
-  );
-}; */
 
 let mapStateToProps = (state) => {
   return {
@@ -42,11 +16,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewMessage: (text) => {
-      dispatch(updateNewMessageCreator(text));
-    },
-    sendMessageAdd: () => {
-      dispatch(addMessageCreator());
+    sendMessageAdd: (newMessage) => {
+      dispatch(addMessageCreator(newMessage));
     },
   };
 };

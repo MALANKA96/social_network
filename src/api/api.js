@@ -46,16 +46,36 @@ export const profileAPI = {
     });
   },
   updateProfileStatus(status) {
-    return instance.put(`profile/status`, {status: status}).then((response) => {
-      return response.data;
-    });
+    return instance
+      .put(`profile/status`, { status: status })
+      .then((response) => {
+        return response.data;
+      });
   },
-
 };
 
 export const authAPI = {
   me() {
-    return instance.get(`/auth/me`).then((response) => {
+    return instance.get(`auth/me`).then((response) => {
+      return response.data;
+    });
+  },
+  login(email, password, rememberMe) {
+    return instance
+      .post(`auth/login`, { email, password, rememberMe })
+      .then((response) => {
+        return response.data;
+      });
+  },
+  logout() {
+    return instance.delete(`auth/login`).then((response) => {
+      return response.data;
+    });
+  },
+};
+export const captchaAPI = {
+  captcha() {
+    return instance.get(`security/get-captcha-url`).then((response) => {
       return response.data;
     });
   },

@@ -2,3 +2,13 @@
 .formControl.error input {
   border: solid red 3px;
 }
+
+.formControl.error span {
+  color: red;
+}
+
+.formSummaryError {
+  border: solid red 3px;
+  color: red;
+  padding: 5px;
+}

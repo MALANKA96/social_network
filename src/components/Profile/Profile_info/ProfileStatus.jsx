@@ -4,16 +4,16 @@ import style from "./ProfileInfo.module.css";
 
 class ProfileStatus extends React.Component {
   state = {
-    active: false,
+    editMode: false,
     status: this.props.status,
   };
 
   activeStatus = () => {
-    this.setState({ active: true });
+    this.setState({ editMode: true });
   };
 
   deactiveStatus = () => {
-    this.setState({ active: false });
+    this.setState({ editMode: false });
     this.props.updateProfileStatus(this.state.status);
   };
 
@@ -29,12 +29,12 @@ class ProfileStatus extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.active && (
+        {!this.state.editMode && (
           <div onDoubleClick={this.activeStatus}>
             {this.props.status || "status none"}
           </div>
         )}
-        {this.state.active && (
+        {this.state.editMode && (
           <div onBlur={this.deactiveStatus}>
             <input
               onChange={this.onStatusChange}

@@ -1,11 +1,13 @@
-import React from "react";
+import * as React from "react";
+
 import style from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import { Field, reduxForm } from "redux-form";
-import { maxLength, required } from './../../../utils/validators/validators';
-import { Textarea } from '../../common/FormControl/FormControl';
+import { maxLength, required } from "./../../../utils/validators/validators";
+import { Textarea } from "../../common/FormControl/FormControl";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
+  console.log("ren");
   let postEl = props.postData.map((postData) => (
     <Post message={postData.message} likesCount={postData.likesCount} />
   ));
@@ -21,7 +23,8 @@ const MyPosts = (props) => {
       <div className={style.posts}>{postEl}</div>
     </div>
   );
-};
+});
+
 const maxLength15 = maxLength(15);
 const MyPostsForm = (props) => {
   return (
@@ -31,7 +34,7 @@ const MyPostsForm = (props) => {
           placeholder={"бомбони новый пост"}
           name={"newPost"}
           component={Textarea}
-          validate={[required, maxLength15]} 
+          validate={[required, maxLength15]}
         />
       </div>
       <div>

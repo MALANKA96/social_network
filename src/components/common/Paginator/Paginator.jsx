@@ -1,12 +1,17 @@
 import * as React from "react";
+import { useState } from "react";
 import style from "./Paginator.module.css";
+import cn from "classnames";
 
-let Paginator = ({ 
-    totalUsersCount, 
-    pageSize, 
-    currentPage, 
-    onPageChanged }) => {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+
+let Paginator = ({
+  totalItemsCount,
+  pageSize,
+  currentPage,
+  onPageChanged,
+  portionSize = 10,
+}) => {
+  let pagesCount = Math.ceil(totalItemsCount / pageSize);
 
   let pages = [];
 
@@ -14,22 +19,51 @@ let Paginator = ({
     pages.push(i);
   }
 
+  let portionCount = Math.ceil(pagesCount / portionSize);
+  let [portionNumber, setPortionNumber] = useState(1);
+  let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+  let rightPortionPageNumber = portionNumber * portionSize;
+
   return (
-    <div>
-      <div>
-        {pages.map((p) => {
+    <div className={style.paginator}>
+      {portionNumber > 1 && (
+        <button
+          onClick={() => {
+            setPortionNumber(portionNumber - 1);
+          }}
+        >
+          {" "}
+          prev{" "}
+        </button>
+      )}
+      {pages
+        .filter(
+          (p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber
+        )
+        .map((p) => {
           return (
             <span
-              className={currentPage === p && style.currentPage}
-              onClick={(e) => {
-                onPageChanged(p);
-              }}
+              className={ cn(
+                { [style.selectedPage] : currentPage === p },
+                style.pageNumber
+              )}
+              key={p}
+              onClick={(e) => onPageChanged(p)}
             >
               {p}
             </span>
           );
         })}
-      </div>
+      {portionCount > portionNumber && (
+        <button
+          onClick={() => {
+            setPortionNumber(portionNumber + 1);
+          }}
+        >
+          {" "}
+          next{" "}
+        </button>
+      )}
     </div>
   );
 };

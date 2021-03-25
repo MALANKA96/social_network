@@ -19,7 +19,7 @@ let Users = ({
         currentPage={currentPage}
         pageSize={pageSize}
         onPageChanged={onPageChanged}
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalUsersCount}
       />
       <div>
         {users.map((u) => (

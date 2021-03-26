@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import { HashRouter, Route, withRouter } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/Navbar/NavBar";
 import News from "./components/News/News";
@@ -36,7 +36,7 @@ class App extends React.Component {
     }
 
     return (
-      <BrowserRouter>
+      <HashRouter > 
         <div className="app_wrap">
           <HeaderContainer />
           <NavBar />
@@ -49,7 +49,7 @@ class App extends React.Component {
           <Route path="/login" render={withSuspense(Login)} />
           <Route path="/news" render={() => <News />} />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

@@ -1,18 +1,15 @@
 import * as React from "react";
-import { HashRouter, Route, withRouter } from "react-router-dom";
+import { HashRouter, Route, withRouter, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/Navbar/NavBar";
 import News from "./components/News/News";
-/* import MessagesContainer from "./components/Messages/MessagesContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import Login from "./components/Login/Login"; */
 import HeaderContainer from "./components/Header/HeaderContainer";
 import { compose } from "redux";
 import { initilizeApp } from "./redux/app-reduser";
-import { connect } from "react-redux";
+import { connect, Provider } from "react-redux";
 import Preloader from "./components/common/Preloader/Preloader";
 import withSuspense from "./hoc/WithSuspense";
+import store from "./redux/redux-store";
 
 const MessagesContainer = React.lazy(() =>
   import("./components/Messages/MessagesContainer")
@@ -36,7 +33,6 @@ class App extends React.Component {
     }
 
     return (
-      <HashRouter > 
         <div className="app_wrap">
           <HeaderContainer />
           <NavBar />
@@ -49,7 +45,6 @@ class App extends React.Component {
           <Route path="/login" render={withSuspense(Login)} />
           <Route path="/news" render={() => <News />} />
         </div>
-      </HashRouter>
     );
   }
 }
@@ -60,9 +55,19 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default compose(
+let AppContainer = compose(
   withRouter,
-  connect(mapStateToProps, {
-    initilizeApp,
-  })
+  connect(mapStateToProps, { initilizeApp })
 )(App);
+
+const SamuraiApp = (props) => {
+  return (
+    <HashRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </HashRouter>
+  );
+};
+
+export default SamuraiApp;

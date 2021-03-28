@@ -3,5 +3,6 @@
 }
 
 .postsBlock {
+    grid-area: profilePosts ;
     padding: 10px;
 }

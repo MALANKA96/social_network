@@ -4,6 +4,7 @@ import {
   getUserProfile,
   getUserStatus,
   updateProfileStatus,
+  getUserContacts,
 } from "./../../redux/profile-reducer";
 import Profile from "./Profile";
 import { withRouter } from "react-router-dom";
@@ -21,15 +22,14 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Profile
+    return ( <Profile
           {...this.props}
           profile={this.props.profile}
           status={this.props.status}
           updateProfileStatus={this.props.updateProfileStatus}
+          getUserContacts={this.props.getUserContacts}
+
         />
-      </div>
     );
   }
 }
@@ -39,7 +39,8 @@ let mapStateToProps = (state) => {
     profile: state.postPage.profile,
     status: state.postPage.status,
     isAuth: state.auth.isAuth,
-    authorizedUserId: state.auth.userId
+    authorizedUserId: state.auth.userId,
+    dropDown: state.postPage.dropDown
   };
 };
 
@@ -48,6 +49,7 @@ export default compose(
     getUserProfile,
     getUserStatus,
     updateProfileStatus,
+    getUserContacts,
   }),
   withRouter,
   withAuthRedirect

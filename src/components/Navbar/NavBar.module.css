@@ -1,28 +1,29 @@
 .navbar {
-    padding: 20px;
-    grid-area: navbar;
-    background-color: rgba(50, 32, 133, 0.438);
-    border-radius: 10px;
-
+  padding: 20px;
+  grid-area: navbar;
+  background-color: rgba(50, 32, 133, 0.438);
+  border-radius: 10px;
+  max-width: 158px;
+  height: 100%;
+  max-height: 1933px;
 }
 
 .item a {
-    font-size: 20px;
-    font: sans-serif;
-    text-decoration: none;
-    color: cornsilk;
+  font-size: 20px;
+  font: sans-serif;
+  text-decoration: none;
+  color: cornsilk;
 }
 
 .item a.activeLine {
-    color:red;
-    font-size: 25px;
-    
+  color: red;
+  font-size: 25px;
 }
 .item :active {
-    color: rgb(16, 18, 167);
+  color: rgb(16, 18, 167);
 }
 
 .item :hover {
-    font-size: 30px;
-    color: darkgreen;
+  font-size: 30px;
+  color: darkgreen;
 }

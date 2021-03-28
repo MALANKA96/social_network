@@ -1,12 +1,13 @@
 import * as React from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import logo from "./../../assets/image/logo.png"
 
 const Header = (props) => {
   return (
     <div className={style.header}>
       <NavLink to="/profile" activeClassName={style.activeLine} >
-        <img className={style.logo} src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png"></img>
+        <img className={style.logo} src={logo} ></img>
       </NavLink>
 
       <div className={style.headerText}>SOCIAL NETWORK in REACT.js</div>

@@ -11,8 +11,10 @@ let Users = ({
   followingInProgress,
   unfollow,
   follow,
+  isAuth,
   ...props
 }) => {
+  ;
   return (
     <div>
       <Paginator
@@ -29,6 +31,7 @@ let Users = ({
             unfollow={unfollow}
             follow={follow}
             key={u.id}
+            isAuth={isAuth}
           />
         ))}
       </div>

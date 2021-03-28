@@ -3,6 +3,12 @@
   background-color: rgba(50, 32, 133, 0.438);
   border-radius: 10px;
   display: grid;
+  grid-template-areas:
+    "profileAva profileStatus"
+    "profilePosts profilePosts";
+  grid-template-rows: 200px 2fr;
+  grid-template-columns: 200px 1fr;
+  grid-gap: 10px;
 }
 
 .profile img {

@@ -31,3 +31,6 @@ export const getToggleFollowingProgress = (state) => {
 export const getFollowingInProgress = (state) => {
   return state.usersPage.followingInProgress;
 };
+export const getIsAuth = (state) => {
+  return state.auth.isAuth;
+};

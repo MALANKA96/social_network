@@ -19,6 +19,7 @@ import {
   getIsFetching,
   getToggleFollowingProgress,
   getFollowingInProgress,
+  getIsAuth,
 } from "./../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
@@ -47,6 +48,7 @@ class UsersContainer extends React.Component {
           unfollow={this.props.unfollow}
           onPageChanged={this.onPageChanged}
           followingInProgress={this.props.followingInProgress}
+          isAuth={this.props.isAuth}
         />
       </>
     );
@@ -62,6 +64,7 @@ let mapStateToProps = (state) => {
     isFetching: getIsFetching(state),
     toggleFollowingProgress: getToggleFollowingProgress(state),
     followingInProgress: getFollowingInProgress(state),
+    isAuth: getIsAuth(state)
   };
 };
 

@@ -1,5 +1,64 @@
-.profileInfo img {
-  /* width: 100%; */
+.profileAva img {
   height: 200px;
   border-radius: 10px;
 }
+.profileAva {
+  grid-area: profileAva ;
+}
+
+.profileStatus {
+  padding: 10px;
+  grid-area: profileStatus;
+}
+.profileStatus .fullName {
+  font-size: 20px;
+  color: aliceblue;
+}
+
+
+.profileStatus .contacts {
+  font-size: 15px;
+  color: aliceblue;
+  width: 200px;
+  padding: 5px 10px;
+  cursor: pointer;
+} 
+
+/* .profileStatus .contacts:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  margin-top: -3px;
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: grey transparent;
+} */
+
+/* .profileStatus .contacts .dropdown {
+  
+    position: absolute;
+    top: 100%;
+    left: -5px;
+    right: 0px;
+ 
+   
+    background: white;
+    transition: all 0.3s ease-out;
+    list-style: none;
+ 
+   
+    opacity: 0;
+    pointer-events: none;
+} */
+
+/* .profileStatus .contacts.active:after {
+  border-width: 0 6px 6px 6px;
+} */
+
+/* .profileStatus .contacts.active .dropdown {
+  opacity: 1;
+  pointer-events: auto;
+} */

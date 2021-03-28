@@ -4,6 +4,8 @@ const ADD_POST = "ADD-POST";
 
 const SET_USERS_PROFILE = "SET_USERS_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const SET_DROPDOWN = "SET_DROPDOWN";
+
 
 let initialState = {
   postData: [
@@ -17,6 +19,7 @@ let initialState = {
   ],
   profile: null,
   status: " ",
+  dropDown: false,
 };
 
 const postPageReducer = (state = initialState, action) => {
@@ -39,6 +42,11 @@ const postPageReducer = (state = initialState, action) => {
         ...state,
         status: action.status,
       };
+      case SET_DROPDOWN:
+      return {
+        ...state,
+        dropDown: action.dropDown,
+      };
 
     default:
       return state;
@@ -46,6 +54,7 @@ const postPageReducer = (state = initialState, action) => {
 };
 
 export const addPostCreator = (newPost) => ({ type: ADD_POST, newPost });
+
 
 export const setUsersProfile = (profile) => {
   return {
@@ -59,6 +68,7 @@ export const setStatus = (status) => {
     status,
   };
 };
+export const getUserContacts = (dropDown) => ({ type: SET_DROPDOWN, dropDown });
 
 export const getUserProfile = (userId) => async (dispatch) => {
   let data = await profileAPI.getUserProfile(userId);

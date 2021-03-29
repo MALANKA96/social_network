@@ -5,6 +5,7 @@ const ADD_POST = "ADD-POST";
 const SET_USERS_PROFILE = "SET_USERS_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const SET_DROPDOWN = "SET_DROPDOWN";
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 
 
 let initialState = {
@@ -47,6 +48,11 @@ const postPageReducer = (state = initialState, action) => {
         ...state,
         dropDown: action.dropDown,
       };
+      case SAVE_PHOTO_SUCCESS:
+      return {
+        ...state,
+        profile: {...state.profile,  photos: action.photos},
+      };
 
     default:
       return state;
@@ -69,6 +75,7 @@ export const setStatus = (status) => {
   };
 };
 export const getUserContacts = (dropDown) => ({ type: SET_DROPDOWN, dropDown });
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
 export const getUserProfile = (userId) => async (dispatch) => {
   let data = await profileAPI.getUserProfile(userId);
@@ -83,6 +90,12 @@ export const updateProfileStatus = (status) => async (dispatch) => {
   let data = await profileAPI.updateProfileStatus(status);
   if (data.resultCode === 0) {
     dispatch(setStatus(status));
+  }
+};
+export const savePhoto = (photoFile) => async (dispatch) => {
+  let data = await profileAPI.savePhoto(photoFile);
+  if (data.resultCode === 0) {
+    dispatch(savePhotoSuccess(data.data.photos));
   }
 };
 

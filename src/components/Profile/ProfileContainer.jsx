@@ -5,6 +5,7 @@ import {
   getUserStatus,
   updateProfileStatus,
   getUserContacts,
+  savePhoto,
 } from "./../../redux/profile-reducer";
 import Profile from "./Profile";
 import { withRouter } from "react-router-dom";
@@ -12,7 +13,7 @@ import { withAuthRedirect } from "./../../hoc/WithRedirect";
 import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
@@ -21,15 +22,27 @@ class ProfileContainer extends React.Component {
     this.props.getUserStatus(userId);
   }
 
-  render() {
-    return ( <Profile
-          {...this.props}
-          profile={this.props.profile}
-          status={this.props.status}
-          updateProfileStatus={this.props.updateProfileStatus}
-          getUserContacts={this.props.getUserContacts}
+  componentDidMount() {
+    this.refreshProfile();
+  }
 
-        />
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.match.params.userId != prevProps.match.params.userId) {
+      this.refreshProfile();
+    }
+  }
+
+  render() {
+    return (
+      <Profile
+        {...this.props}
+        profile={this.props.profile}
+        status={this.props.status}
+        updateProfileStatus={this.props.updateProfileStatus}
+        getUserContacts={this.props.getUserContacts}
+        isOwner={!this.props.match.params.userId}
+        savePhoto={this.props.savePhoto}
+      />
     );
   }
 }
@@ -40,7 +53,7 @@ let mapStateToProps = (state) => {
     status: state.postPage.status,
     isAuth: state.auth.isAuth,
     authorizedUserId: state.auth.userId,
-    dropDown: state.postPage.dropDown
+    dropDown: state.postPage.dropDown,
   };
 };
 
@@ -50,6 +63,7 @@ export default compose(
     getUserStatus,
     updateProfileStatus,
     getUserContacts,
+    savePhoto,
   }),
   withRouter,
   withAuthRedirect

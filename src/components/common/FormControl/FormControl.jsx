@@ -34,7 +34,7 @@ export const createField = (
   validators,
   text = ""
 ) => {
-  <div> 
+  return <>
     <Field
       placeholder={placeholder}
       name={name}
@@ -43,5 +43,6 @@ export const createField = (
       validate={validators}
     />
     {text}
-  </div>;
+  </>;
 };
+

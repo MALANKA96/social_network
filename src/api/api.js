@@ -65,7 +65,12 @@ export const profileAPI = {
         return response.data;
       });
   },
-};
+
+  saveProfileInfo(profileInfo) {
+    return instance.put(`/profile`, profileInfo).then((response) => {return response.data;});
+  }
+}
+
 
 export const authAPI = {
   me() {

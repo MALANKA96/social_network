@@ -7,6 +7,7 @@ import Profile from "./../Profile";
 import { reduxForm } from "redux-form";
 import ProfileDataForm from "./ProfileDataForm";
 
+
 const ProfileInfo = ({
   profile,
   status,
@@ -14,6 +15,7 @@ const ProfileInfo = ({
   getUserContacts,
   isOwner,
   savePhoto,
+  saveProfileInfo
 }) => {
   let [dropDown, setDropDown] = React.useState(true);
   let [editMode, setEditMode] = React.useState(false);
@@ -39,6 +41,10 @@ const ProfileInfo = ({
 
   const activeEdit = () => {
     setEditMode(true);
+  };
+
+  const onSubmit = (formData) => {
+    saveProfileInfo(formData);
   };
 
   if (!profile) {
@@ -71,10 +77,14 @@ const ProfileInfo = ({
             activeDrop={activeDrop}
             dropDown={dropDown}
             isOwner={isOwner}
-            activeEdit={() => {setEditMode(true)}}
+            activeEdit={() => {
+              setEditMode(true);
+            }}
           />
         ) : (
-          <ProfileDataForm profile={profile} />
+          <ProfileDataForm 
+            profile={profile} 
+            onSubmit={onSubmit} />
         )}
       </div>
     </>
@@ -90,13 +100,7 @@ const ProfileData = ({
 }) => {
   return (
     <>
-      {isOwner ? (
-        <div>
-          <button onClick={activeEdit}> edit </button>{" "}
-        </div>
-      ) : (
-        <> </>
-      )}
+      {isOwner ? <button onClick={activeEdit}> edit </button> : <> </>}
       <div>
         <b>About me: </b>
         {profile.aboutMe === null ? "empty" : profile.aboutMe}

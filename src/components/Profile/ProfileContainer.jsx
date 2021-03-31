@@ -6,6 +6,7 @@ import {
   updateProfileStatus,
   getUserContacts,
   savePhoto,
+  saveProfileInfo,
 } from "./../../redux/profile-reducer";
 import Profile from "./Profile";
 import { withRouter } from "react-router-dom";
@@ -42,6 +43,7 @@ class ProfileContainer extends React.Component {
         getUserContacts={this.props.getUserContacts}
         isOwner={!this.props.match.params.userId}
         savePhoto={this.props.savePhoto}
+        saveProfileInfo={this.props.saveProfileInfo}  
       />
     );
   }
@@ -64,6 +66,7 @@ export default compose(
     updateProfileStatus,
     getUserContacts,
     savePhoto,
+    saveProfileInfo
   }),
   withRouter,
   withAuthRedirect

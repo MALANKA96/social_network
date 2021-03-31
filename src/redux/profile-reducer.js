@@ -76,6 +76,7 @@ export const setStatus = (status) => {
 };
 export const getUserContacts = (dropDown) => ({ type: SET_DROPDOWN, dropDown });
 export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos });
+export const saveProfileSuccess = (profileInfo) => ({ type: SAVE_PHOTO_SUCCESS, profileInfo });
 
 export const getUserProfile = (userId) => async (dispatch) => {
   let data = await profileAPI.getUserProfile(userId);
@@ -96,6 +97,13 @@ export const savePhoto = (photoFile) => async (dispatch) => {
   let data = await profileAPI.savePhoto(photoFile);
   if (data.resultCode === 0) {
     dispatch(savePhotoSuccess(data.data.photos));
+  }
+};
+export const saveProfileInfo = (profileInfo) => async (dispatch) => {
+  let data = await profileAPI.saveProfileInfo(profileInfo);
+  debugger
+  if (data.resultCode === 0) {
+    dispatch(saveProfileSuccess(data.data));
   }
 };
 

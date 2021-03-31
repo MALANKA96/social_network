@@ -4,19 +4,15 @@ import style from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/image/user.png";
 import Profile from "./../Profile";
-import { Form, reduxForm } from "redux-form";
+import {reduxForm } from "redux-form";
 import { createField, Input, Textarea } from "./../../common/FormControl/FormControl";
 import { maxLength, required } from "../../../utils/validators/validators";
 
-const ProfileDataForm = ({ profile, activeDrop, dropDown }) => {
-
-  const maxLength15 = maxLength(15); 
+const ProfileDataForm = ({ profile, activeDrop, dropDown, handleSubmit, }) => {
 
   return (
-    <form>
-      <div>
+    <form onSubmit={ handleSubmit } >
         <button> save </button>
-      </div>
       <div>
         <b> Full Name: </b>
         {createField(
@@ -64,5 +60,7 @@ const ProfileDataForm = ({ profile, activeDrop, dropDown }) => {
 const ProfileDataReduxForm = reduxForm({
   form: "edit_profile", //
 })(ProfileDataForm);
+
+
 
 export default ProfileDataReduxForm;

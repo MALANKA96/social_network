@@ -66,8 +66,8 @@ export const profileAPI = {
       });
   },
 
-  saveProfileInfo(profileInfo) {
-    return instance.put(`/profile`, profileInfo).then((response) => {return response.data;});
+  saveProfileInfo(profile) {
+    return instance.put(`/profile`, profile).then((response) => {return response.data;});
   }
 }
 

@@ -7,7 +7,6 @@ import Profile from "./../Profile";
 import { reduxForm } from "redux-form";
 import ProfileDataForm from "./ProfileDataForm";
 
-
 const ProfileInfo = ({
   profile,
   status,
@@ -15,7 +14,7 @@ const ProfileInfo = ({
   getUserContacts,
   isOwner,
   savePhoto,
-  saveProfileInfo
+  saveProfileInfo,
 }) => {
   let [dropDown, setDropDown] = React.useState(true);
   let [editMode, setEditMode] = React.useState(false);
@@ -39,12 +38,9 @@ const ProfileInfo = ({
     }
   };
 
-  const activeEdit = () => {
-    setEditMode(true);
-  };
-
   const onSubmit = (formData) => {
     saveProfileInfo(formData);
+   // setEditMode(false);
   };
 
   if (!profile) {
@@ -82,9 +78,11 @@ const ProfileInfo = ({
             }}
           />
         ) : (
-          <ProfileDataForm 
-            profile={profile} 
-            onSubmit={onSubmit} />
+          <ProfileDataForm
+            initialValues={profile}
+            profile={profile}
+            onSubmit={onSubmit}
+          />
         )}
       </div>
     </>
@@ -100,21 +98,22 @@ const ProfileData = ({
 }) => {
   return (
     <>
-      {isOwner ? <button onClick={activeEdit}> edit </button> : <> </>}
-      <div>
-        <b>About me: </b>
-        {profile.aboutMe === null ? "empty" : profile.aboutMe}
-      </div>
+      {isOwner && <button onClick={activeEdit}> edit </button>}
       <div>
         <b>Looking for a job: </b>
-        {profile.lookingForAJob === false ? "no" : "yes"}
+        {profile.lookingForAJob ? "no" : "yes"}
       </div>
+      {!profile.lookingForAJob && (
+        <div>
+          <b>My skills: </b>
+          {profile.lookingForAJobDescription}
+        </div>
+      )}
+
       <div>
-        <b>My skills: </b>
-        {profile.lookingForAJobDescription === null
-          ? "empty"
-          : profile.lookingForAJobDescription}
+        <b>About me: </b> {profile.aboutMe}
       </div>
+
       <div>
         <b onClick={activeDrop}>Contacts: </b>
         {Object.keys(profile.contacts).map((key) => (

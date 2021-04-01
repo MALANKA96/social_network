@@ -39,8 +39,10 @@ const ProfileInfo = ({
   };
 
   const onSubmit = (formData) => {
-    saveProfileInfo(formData);
-   // setEditMode(false);
+    saveProfileInfo(formData).then(()=> {
+      setEditMode(false);
+    });
+    
   };
 
   if (!profile) {
@@ -101,9 +103,9 @@ const ProfileData = ({
       {isOwner && <button onClick={activeEdit}> edit </button>}
       <div>
         <b>Looking for a job: </b>
-        {profile.lookingForAJob ? "no" : "yes"}
+        {profile.lookingForAJob ? "yes" : "no"}
       </div>
-      {!profile.lookingForAJob && (
+      {profile.lookingForAJob && (
         <div>
           <b>My skills: </b>
           {profile.lookingForAJobDescription}

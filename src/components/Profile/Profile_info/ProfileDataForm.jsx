@@ -21,11 +21,11 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
       {error && <div className={styleF.formSummaryError}>{error}</div>}
       <div>
         <b> Full Name: </b>
-        {createField("Full name", "fullname", Input, "text", [])}
+        {createField("Full name", "fullName", Input, "text", [])}
       </div>
       <div>
         <b>Looking for a job: </b>
-        {createField("Looking", "Looking", Input, "checkbox", [])}
+        {createField("Looking", "lookingForAJob", Input, "checkbox", [])}
       </div>
       <div>
         <b>My skills: </b>
@@ -33,13 +33,13 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           "My skills",
           "lookingForAJobDescription",
           Textarea,
-          "textaria",
+          "text",
           []
         )}
       </div>
       <div>
         <b>About me: </b>
-        {createField("About me", "aboutme", Textarea, "textaria", [])}
+        {createField("About me", "aboutMe", Textarea, "textaria", [])}
       </div>
       <div>
         <b>Contacts: </b>
@@ -47,7 +47,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           return (
             <div className={style.contacts}>
               <b>
-                {key}:{createField(key, "contacts" + key, Input, "text", [])}
+                {key}:{createField(key, "contacts." + key, Input, "text", [])}
               </b>
             </div>
           );

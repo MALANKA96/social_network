@@ -7,39 +7,48 @@ import { login, logout } from "./../../redux/auth-reduser";
 import { Redirect } from "react-router-dom";
 import style from "./../common/FormControl/FormControl.module.css";
 
-const LoginForm = ({ handleSubmit, error }) => {
- 
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
+  if (error === "Incorrect anti-bot symbols") {
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-    <div><Field
-      placeholder={"Email"}
-      name={"email"}
-      component={Input}
-      type={"email"}
-      validate={[required]}
-    /></div>
-    <div><Field
-      placeholder={"Password"}
-      name={"password"}
-      component={Input}
-      type={"password"}
-      validate={[required]}
-    /></div>
-    <div><Field
-      /* placeholder={"Password"} */
-      name={"rememberMe"}
-      component={Input}
-      type={"checkbox"}
-      validate={[required]}
-    /> Remember me </div> 
+       <div>
+        <Field
+          placeholder={"Email"}
+          name={"email"}
+          component={Input}
+          type={"email"}
+          validate={[required]}
+        />
+      </div>
+      <div>
+        <Field
+          placeholder={"Password"}
+          name={"password"}
+          component={Input}
+          type={"password"}
+          validate={[required]}
+        />
+      </div>
+      <div>
+        <Field
+          name={"rememberMe"}
+          component={Input}
+          type={"checkbox"}
+          validate={[]}
+        />{" "}
+        Remember me{" "}
+      </div> 
 
-{/* {createField("Email", "email", Input, "email", [required])}
+     {/*  {createField("Email", "email", Input, "email", [required])}
 {createField("Password", "password", Input, "password", [required])}
 {createField(null, "rememberMe", "input", "checkbox", [], {
         text: "Remember me",
-      })} */}
+      })}  */}
       {error && <div className={style.formSummaryError}>{error}</div>}
-
+      {/*  {error === "Incorrect anti-bot symbols" && <Captcha /> } */}
+      {captchaUrl && <div> <Captcha captchaUrl={captchaUrl} /></div>}
       <div>
         <Field name={"login"} component={"button"}>
           Login
@@ -54,7 +63,8 @@ const LoginReduxForm = reduxForm({
 
 const Login = (props) => {
   const onSubmit = (formData) => {
-    props.login(formData.email, formData.password, formData.rememberMe);
+    console.log(formData)
+    props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
   };
 
   if (props.isAuth) {
@@ -64,7 +74,22 @@ const Login = (props) => {
   return (
     <div>
       <h1> LOOOGin </h1>
-      <LoginReduxForm onSubmit={onSubmit} />
+      <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+    </div>
+  );
+};
+
+const Captcha = ({captchaUrl}) => {
+  return (
+    <div>
+      <img src={captchaUrl} />
+      <Field
+        placeholder={"Captcha"}
+        name={"captcha"}
+        component={Input}
+        type={"text"}
+        validate={[]}
+      />
     </div>
   );
 };
@@ -72,6 +97,7 @@ const Login = (props) => {
 let mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl,
   };
 };
 
